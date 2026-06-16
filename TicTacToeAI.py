@@ -1,24 +1,30 @@
 #TicTacToe
 import random
 import sys
+#Creating a board
 board = ['-','-','-',
          '-','-','-',
          '-','-','-']
+#Setting a current player to X
 currentPlayer='X'
 winner = None
 gameRunning = True
 win = 0
+#Printing a board
 def printBoard(board):
     print(board[0] + '|' + board[1] + '|' + board[2])
     print(board[3] + '|' + board[4] + '|' + board[5])
     print(board[6] + '|' + board[7] + '|' + board[8])
+#Recieving a player's input
 def playerInput(board):
+    
     inp = int(input('Pick a number from 1 to 9: '))
     if inp >= 1 and inp <= 9 and board[inp-1]== '-':
         board[inp-1] = currentPlayer
     else:
-        print('Something unexpected has happened')
-
+        print('You had to write an integer from 1 to 9. Also, the spot must be free.')
+        gameRunning = False
+#Checking horizontals
 def checkHorizontal(board):
     global winner
     if board[0] == board[1] == board[2] and board[1] != '-':
@@ -30,6 +36,7 @@ def checkHorizontal(board):
     elif board[6] == board[7] == board[8] and board[6] != '-':
         winner = board[6]
         return True
+#Checking cloumns
 def checkColumn(board):
     global winner
     if board[0] == board[3] == board[6] and board[6] != '-':
@@ -41,6 +48,7 @@ def checkColumn(board):
     elif board[2] == board[5] == board[8] and board[8] != '-':
         winner = board[8]
         return True
+#Checking diagnols
 def checkDiag(board):
     global winner
     if board[0] == board[4] == board[8] and board[0] != '-':
@@ -49,6 +57,7 @@ def checkDiag(board):
     elif board[2] == board[4] == board[6] and board[6] != '-':
         winner = board[2]
         return True
+#Checking a tie
 def checkTie(board):
     global gameRunning, win
     if '-' not in board and win == 0:
@@ -58,21 +67,42 @@ def checkTie(board):
         print('It is a tie')
     
 
-                            
+#Creating a simple bot                            
 def AImachine(board):
     global currentPlayer
+    four = 4
+
 
     if currentPlayer == 'X':
         currentPlayer = 'O'
+        if board[4] == '-':
+            board[4] = 'O'
+            currentPlayer = 'X'
+           
+        elif board[2] == '-':
+            board[2] = 'O'
+            currentPlayer = 'X'
+        elif board[6] == '-':
+            board[6] = 'O'
+            currentPlayer = 'X'
+        elif board[8] == '-':
+            board[8] = 'O'
+            currentPlayer = 'X'
+        elif board[1] == '-':
+            board[1] = 'O'
+            currentPlayer = 'X'
+        elif board[3] == '-':
+            board[3] = 'O'
+            currentPlayer = 'X'
+        elif board[7] == '-':
+            board[7] = 'O'
+            currentPlayer = 'X'
+        elif board[5] == '-':
+            board[5] = 'O'
+            currentPlayer = 'X' 
 
-        empty = [i for i, spot in enumerate(board) if spot == '-']
 
-        if empty:
-            choice = random.choice(empty)
-            board[choice] = 'O'
-
-        currentPlayer = 'X'  
-        
+#Checking a win        
 def checkWin():
     global winner, gameRunning, win
     if  checkHorizontal(board) or checkColumn(board) or checkDiag(board):
@@ -83,7 +113,7 @@ def checkWin():
         win = 1
         
        
-           
+ #Running a code          
 while gameRunning:
     printBoard(board)
 
