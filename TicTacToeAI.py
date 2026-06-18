@@ -17,11 +17,11 @@ def printBoard(board):
     print(board[6] + '|' + board[7] + '|' + board[8])
 #Recieving a player's input
 def playerInput(board):
-    
-    inp = int(input('Pick a number from 1 to 9: '))
-    if inp >= 1 and inp <= 9 and board[inp-1]== '-':
-        board[inp-1] = currentPlayer
-    else:
+    try:
+        inp = int(input('Pick a number from 1 to 9: '))
+        if inp >= 1 and inp <= 9 and board[inp-1]== '-':
+            board[inp-1] = currentPlayer
+    except:
         print('You had to write an integer from 1 to 9. Also, the spot must be free.')
         gameRunning = False
 #Checking horizontals
