@@ -263,7 +263,7 @@ def checkWin():
         win = 1
         
        
- #Running a code          
+#Running a code          
 while gameRunning:
     printBoard(board)
 
