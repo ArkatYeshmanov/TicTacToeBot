@@ -69,7 +69,7 @@ def checkTie(board):
     
 
 #Creating a simple bot                            
-def AImachine(board):
+def BotMachine(board):
     global currentPlayer
     four = 4
 
@@ -278,7 +278,7 @@ while gameRunning:
     if not gameRunning:
         break
 
-    AImachine(board)
+    BotMachine(board)
     checkWin()
     checkTie(board)
 
