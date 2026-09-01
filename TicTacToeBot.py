@@ -37,7 +37,7 @@ def checkHorizontal(board):
     elif board[6] == board[7] == board[8] and board[6] != '-':
         winner = board[6]
         return True
-#Checking cloumns
+#Checking columns
 def checkColumn(board):
     global winner
     if board[0] == board[3] == board[6] and board[6] != '-':
